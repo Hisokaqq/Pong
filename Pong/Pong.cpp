@@ -1,20 +1,54 @@
-// Pong.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
 
 #include <iostream>
 
+enum Dir {STOP = 0, LEFT = 1, UPLEFT = 2, DOWNLEFT = 3, RIGHT = 4, UPRIGHT = 5, DOWNRIGHT = 6 };
+
+class Ball{
+private:
+    int x, y;
+    int originalX, originalY;
+    Dir direction;
+public:
+
+    Ball( int posX, int posY ){
+        originalX = posX;
+        originalY = posY;
+        x = posX;
+        y = posY;
+        direction = STOP;
+    }
+
+    void Reset() {
+        x = originalX;
+        y = originalY;
+        direction = STOP;
+    }
+
+    void changeDirection(Dir d) {
+        direction = d;
+    }
+
+    inline int getX() {
+        return x;
+    }
+
+    inline int getY() {
+        return y;
+    }
+    
+    inline Dir getDirection() {
+        return direction;
+    }
+
+    void randomDirection() {
+        direction = (Dir)((rand() % 6) + 1 );
+
+    }
+};
+
+
+
 int main()
 {
-    std::cout << "Hello World!\n";
+    return 1;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
