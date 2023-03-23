@@ -77,28 +77,65 @@ public:
         }
     }
     friend ostream& operator << (ostream& o, Ball c) {
-        o << "pos: (" << c.x << ", " << c.y << "), direction: " << c.direction << endl;
+        o << "Ball pos: (" << c.x << ", " << c.y << "), direction: " << c.direction << endl;
+        return o;
+    }
+};
+
+class Paddle {
+private:
+    int x, y;
+    int originalX, originalY;
+public:
+    Paddle() {
+        x = y = 0;
+    }
+    Paddle(int posX, int posY) : Paddle() {
+        originalX = posX;
+        originalY = posY;
+        x = posX;
+        y = posY;
+    }
+
+    inline void Reset() {
+        x = originalX;
+        y = originalY;
+    }
+
+    inline int getX() {
+        return x;
+    }
+
+    inline int getY() {
+        return y;
+    }
+
+    inline void moveUp() {
+        y--;
+    }
+
+    inline void moveDown() {
+        y++;
+    }
+
+    friend ostream& operator << (ostream& o, Paddle p) {
+        o << "Paddle pos: (" << p.x << ", " << p.y << ")" << endl;
         return o;
     }
 };
 
 
-
 int main()
 {   
-    Ball c(0, 0);
+    Paddle p1(0, 0);
+    Paddle p2(10, 0);
+    cout << p1;
+    cout << p2;
+    p1.moveDown();
+    p2.moveUp();
+    cout << p1;
+    cout << p2;
 
-
-    cout << c;
-    c.randomDirection();
-    cout << c;
-    c.Move();
-    cout << c;
-    c.randomDirection();
-    c.Move();
-    cout << c;
-    c.randomDirection();
-    cout << c;
 
     return 1;
 }
